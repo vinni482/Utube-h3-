@@ -1,0 +1,90 @@
+﻿@model PagedList.IPagedList<Utube.Models.Video>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" type="text/css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Все видео</h2>
+<p style="color:yellow;">
+    @Html.ActionLink("Создать новое видео", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.ProfileId)
+        </th>*@
+        <th  style="max-width:300px;">
+            @*@Html.DisplayNameFor(model => model. )*@
+            Название
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Vlink)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.Shared)
+            
+        </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.DateIn)*@
+            Дата загрузки
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Like)*@
+            Нравиться
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.DisLike)*@
+            Не нравиться
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Views)*@
+            Количество просмотров
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Info)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.ProfileId)
+        </td>*@
+        <td  style="max-width:300px;">
+            @Html.DisplayFor(modelItem => item.VideoTitle)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Vlink)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Shared)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.DateIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Like)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DisLike)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Views)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Info)
+        </td>*@
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id = item.Id }, new {@class="btn btn-success"}) 
+            @Html.ActionLink("Просмотр", "ShowVideo", new { id=item.Id }, new { @class = "btn btn-info" }) 
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page}))
+Страница @(Model.PageCount<Model.PageNumber?0:Model.PageNumber) из @Model.PageCount
+

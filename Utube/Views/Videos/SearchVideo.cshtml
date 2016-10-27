@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Utube.Models.Item>
+@{
+    ViewBag.Title = "SearchVideo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Найденное видео</h2>
+@using (Html.BeginForm("SearchVideo2", "Videos", FormMethod.Post))
+{
+    <ul>
+        @foreach (Utube.Models.Item i in Model)
+        {
+            string src = (string)"https://www.youtube.com/embed/" + i.id.videoId;
+
+           <li>
+               <div>
+                   <h3>@i.snippet.title</h3>
+                   <h3>@i.snippet.publishedAt</h3>
+                   <iframe width="560" height="315" src=@src frameborder="0" allowfullscreen></iframe>
+                   <h3>@i.snippet.description</h3>
+                   @{string cbname = "cb" + i.id.videoId;}
+                   <input type="checkbox" name=@cbname />
+               </div>
+               <hr/>
+           </li>
+        } 
+    </ul>
+    <input type="submit" name="TakeVideo" class="btn btn-default" value="Добавить"/>
+}
