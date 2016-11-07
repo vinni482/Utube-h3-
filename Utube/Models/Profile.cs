@@ -12,6 +12,7 @@ namespace Utube.Models
         public Guid UserId { set; get; }
         public byte[] Picture { set; get; }
 
-
     }
 }
+
+

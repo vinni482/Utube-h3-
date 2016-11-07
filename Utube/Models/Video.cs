@@ -7,15 +7,18 @@ namespace Utube.Models
 {
     public class Video
     {
+
+        public string Vkey = "AIzaSyCrnoGrX9vk_WI3Xi2b16xEoawpcJ5q7RI";
         public int Id { set; get; }
-        public int ProfileId { set; get; }
-        public string VideoTitle { set; get; }
-        public string Vlink { set; get; }
-        public bool Shared { set; get; }
-        public DateTime DateIn { set; get; }
+        public string Videotitle { set; get; }
+        public string Vlink { get; set; }
+        public bool Shared { get; set; }
+        public DateTime Datein { set; get; }
         public int Like { set; get; }
-        public int DisLike { set; get; }
-        public int Views { set; get; }
+        public int Dislike { set; get; }
+
+        public int Profileid { set; get; }
+        public int Views { get; set; }
         public string Info { set; get; }
 
     }
